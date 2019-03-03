@@ -30,6 +30,8 @@ public class Tut2Ex1 {
 		getPets("Frog");
 						
 	}
+    
+        //This method connects ensures that there is a connection with the database
 	public static void connect() throws ClassNotFoundException, SQLException {
                 Connection conn = DriverManager.getConnection("jdbc:sqlite:mydatabase.db");
                 Statement st = conn.createStatement();
