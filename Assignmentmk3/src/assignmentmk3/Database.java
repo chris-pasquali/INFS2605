@@ -188,10 +188,10 @@ public class Database {
             rs = dbmd.getTables(null, null, "AEROBIC_FITNESS", null);
             if (!rs.next()) {
                 
-                createAerobicInputTable = conn.prepareStatement("CREATE TABLE AEROBIC_FITNESS (AEROBIC_EXERCISE VARCHAR(50))");
+                createAerobicInputTable = conn.prepareStatement("CREATE TABLE AEROBIC_FITNESS (AEROBIC_DATE DATE, AEROBIC_EXERCISE VARCHAR(50), AEROBIC_LENGTH NUMBER)");
                 createAerobicInputTable.execute();
                 System.out.println("AEROBIC_FITNESS table created");
-                insertDemoData = conn.prepareStatement("INSERT INTO AEROBIC_FITNESS(AEROBIC_EXERCISE) "
+                insertDemoData = conn.prepareStatement("INSERT INTO AEROBIC_FITNESS(AEROBIC_EXERCISE, AEROBIC_LENGTH) "
                         + "VALUES ('Salad'), "
                         
                         );
@@ -216,7 +216,7 @@ public class Database {
             rs = dbmd.getTables(null, null, "RESISTANCE_FITNESS", null);
             if (!rs.next()) {
                 
-                createResistanceInputTable = conn.prepareStatement("CREATE TABLE RESISTANCE_FITNESS (RESISTANCE_EXERCISE VARCHAR(50))");
+                createResistanceInputTable = conn.prepareStatement("CREATE TABLE RESISTANCE_FITNESS (RESISTANCE_DATE DATE, RESISTANCE_EXERCISE VARCHAR(50), RESISTANCE_LENGTH NUMBER)");
                 createResistanceInputTable.execute();
                 System.out.println("RESISTANCE_FITNESS table created");
                 insertDemoData = conn.prepareStatement("INSERT INTO RESISTANCE_FITNESS(RESISTANCE_EXERCISE) "
@@ -248,8 +248,10 @@ public class Database {
                 createMentalHealthTable.execute();
                 System.out.println("RESISTANCE_FITNESS table created");
                 insertDemoData = conn.prepareStatement("INSERT INTO MENTAL_FITNESS(MENTAL_EXERCISE) "
-                        + "VALUES ('Salad'), "
-                        
+                        + "VALUES ('Meditation'), "
+                        + "('Stretching'), "
+                        + "('Breathing techniques'), "
+                        + "('Yoga')"
                         );
                 insertDemoData.execute();
             } else {
@@ -270,13 +272,15 @@ public class Database {
             DatabaseMetaData dbmd = conn.getMetaData();
             rs = dbmd.getTables(null, null, "HEALTH_CHECK_UP", null);
             if (!rs.next()) {
-                //HEIGHT IS IN CM, WEIGHT IN KGS
+                
                 createHealthCheckUpTable = conn.prepareStatement("CREATE TABLE HEALTH_CHECK_UP (DATE DATE, HEALTH_PROFESSIONAL VARCHAR(50))");
                 createHealthCheckUpTable.execute();
                 System.out.println("HEALTH_CHECK_UP table created");
                 insertDemoData = conn.prepareStatement("INSERT INTO HEALTH_CHECK_UP(DATE, HEALTH_PROFESSIONAL)"
                         + "VALUES (12-04-2019, 'Dentist')"
-                        + "(08-04-2019, 'Optomertrist')"
+                        + "(08-04-2019, 'Optomertrist'), "
+                        + "(03-03-2019, 'Physio'),"
+                        + "(25-02-2019, 'Pyschologist')"
                         );
                 insertDemoData.execute();
             } else {
