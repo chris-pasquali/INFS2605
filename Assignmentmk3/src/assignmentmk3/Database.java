@@ -191,7 +191,7 @@ public class Database {
                 createAerobicInputTable = conn.prepareStatement("CREATE TABLE AEROBIC_FITNESS (AEROBIC_DATE DATE, AEROBIC_EXERCISE VARCHAR(50), AEROBIC_LENGTH NUMBER)");
                 createAerobicInputTable.execute();
                 System.out.println("AEROBIC_FITNESS table created");
-                insertDemoData = conn.prepareStatement("INSERT INTO AEROBIC_FITNESS(AEROBIC_EXERCISE, AEROBIC_LENGTH) "
+                insertDemoData = conn.prepareStatement("INSERT INTO AEROBIC_FITNESS(AEROBIC_DATE DATE, AEROBIC_EXERCISE, AEROBIC_LENGTH) "
                         + "VALUES ('Salad'), "
                         
                         );
@@ -219,7 +219,7 @@ public class Database {
                 createResistanceInputTable = conn.prepareStatement("CREATE TABLE RESISTANCE_FITNESS (RESISTANCE_DATE DATE, RESISTANCE_EXERCISE VARCHAR(50), RESISTANCE_LENGTH NUMBER)");
                 createResistanceInputTable.execute();
                 System.out.println("RESISTANCE_FITNESS table created");
-                insertDemoData = conn.prepareStatement("INSERT INTO RESISTANCE_FITNESS(RESISTANCE_EXERCISE) "
+                insertDemoData = conn.prepareStatement("INSERT INTO RESISTANCE_FITNESS(RESISTANCE_DATE, RESISTANCE_EXERCISE, RESISTANCE_LENGTH) "
                         + "VALUES ('Salad'), "
                         
                         );
@@ -317,30 +317,30 @@ public class Database {
         }
     }
     
-    //NEED TO ADD DATA INTO THIS TABLE
-    public static void createHealthGoalsTable() {
-        PreparedStatement createHealthGoalsTable = null;
-        PreparedStatement insertDemoData = null;
-        ResultSet rs = null;
-        openConnection();
-        try {
-            System.out.println("Checking HEALTH_GOALS table ");
-            DatabaseMetaData dbmd = conn.getMetaData();
-            rs = dbmd.getTables(null, null, "HEALTH_GOALS", null);
-            if (!rs.next()) {
-                //HEIGHT IS IN CM, WEIGHT IN KGS
-                createHealthGoalsTable = conn.prepareStatement("CREATE TABLE HEALTH_GOALS (FOOD_GOALS VARCHAR(100), AEROBIC_GOALS VARCHAR(150), RESISTANCE_GOALS VARCHAR(150), MENTAL_HEALTH_GOALS VARCHAR(150), HEALTH_CHECK_GOALS VARCHAR(150))");
-                createHealthGoalsTable.execute();
-                System.out.println("HEALTH_GOALS table created");
-                insertDemoData = conn.prepareStatement("INSERT INTO HEALTH_GOALS(FOOD_GOALS VARCHAR(100), AEROBIC_GOALS VARCHAR(150), RESISTANCE_GOALS VARCHAR(150), MENTAL_HEALTH_GOALS VARCHAR(150), HEALTH_CHECK_GOALS VARCHAR(150))"
-                        + "VALUES ('FILL IN DATA', 7, 25, 23, 65, 7)");
-                insertDemoData.execute();
-            } else {
-                System.out.println("HEALTH_GOALS table exists");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    NEED TO ADD DATA INTO THIS TABLE
+//    public static void createHealthGoalsTable() {
+//        PreparedStatement createHealthGoalsTable = null;
+//        PreparedStatement insertDemoData = null;
+//        ResultSet rs = null;
+//        openConnection();
+//        try {
+//            System.out.println("Checking HEALTH_GOALS table ");
+//            DatabaseMetaData dbmd = conn.getMetaData();
+//            rs = dbmd.getTables(null, null, "HEALTH_GOALS", null);
+//            if (!rs.next()) {
+//                //HEIGHT IS IN CM, WEIGHT IN KGS
+//                createHealthGoalsTable = conn.prepareStatement("CREATE TABLE HEALTH_GOALS (FOOD_GOALS VARCHAR(100), AEROBIC_GOALS VARCHAR(150), RESISTANCE_GOALS VARCHAR(150), MENTAL_HEALTH_GOALS VARCHAR(150), HEALTH_CHECK_GOALS VARCHAR(150))");
+//                createHealthGoalsTable.execute();
+//                System.out.println("HEALTH_GOALS table created");
+//                insertDemoData = conn.prepareStatement("INSERT INTO HEALTH_GOALS(FOOD_GOALS VARCHAR(100), AEROBIC_GOALS VARCHAR(150), RESISTANCE_GOALS VARCHAR(150), MENTAL_HEALTH_GOALS VARCHAR(150), HEALTH_CHECK_GOALS VARCHAR(150))"
+//                        + "VALUES ('FILL IN DATA', 7, 25, 23, 65, 7)");
+//                insertDemoData.execute();
+//            } else {
+//                System.out.println("HEALTH_GOALS table exists");
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
     
 }
